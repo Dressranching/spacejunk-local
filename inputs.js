@@ -18,32 +18,27 @@ class Inputs {
    * frame, so holding a key has the same effect at any frame rate.
    **/
   handleKeyDown(delta) {
-    // TODO (Phase 2): Use keyIsDown() to check w, a, s, and d, and call
-    // this.magpie.physics.thrust() or this.magpie.physics.rotate() with
-    // Inputs.THRUST, Inputs.REVERSE_THRUST, or Inputs.TURN_RATE.
 
-    if (keyIsDown('w')) {
+    if (keyIsDown('87')) { // w
       this.magpie.physics.thrust(Inputs.THRUST, delta);
       
-    } else if (keyIsDown('s')) {
+    } else if (keyIsDown('83')) { // s
       this.magpie.physics.thrust(-Inputs.REVERSE_THRUST, delta);
       
-    } else if (keyIsDown('a')) {
+    } else if (keyIsDown('65')) { // a
       this.magpie.physics.rotate(-Inputs.TURN_RATE, delta);
       
-    } else if (keyIsDown('d')) {
+    } else if (keyIsDown('68')) { // d
       this.magpie.physics.rotate(Inputs.TURN_RATE, delta);
       
     }
     
-    if (keyIsDown('Space')) {
+    if (keyIsDown('32')) { // space
       this.magpie.enableBeam(true);
     } else {
       this.magpie.enableBeam(false);
     }
-    //
-    // TODO (Phase 3): Turn the beam on with this.magpie.enableBeam(true)
-    // while Space is held, and off with enableBeam(false) when it isn't.
+
   }
 }
 
@@ -60,6 +55,7 @@ const SCROLL_KEYS = [" ", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
  */
 function keyPressed() {
   // game is undefined until setup() runs
+  console.log("KEY presed", key, keyCode)
   if (game && (key === "~" || key === "`")) {
     game.debug = !game.debug;
   }

@@ -27,10 +27,14 @@ class Magpie {
     drawEverywhere({
       offset: this.physics,
       drawFn: () => {
-        // TODO (Phase 4): If this.capturedJunk isn't null, draw it here, so
-        // the ship is drawn on top of it. Rotate by the Magpie's rotation,
-        // translate to (0, Magpie.CARGO_Y), and call Junk.drawJunk(). Use
-        // push() and pop() so the ship below isn't moved too.
+
+        if (this.capturedJunk) {
+          push();
+          rotate(this.physics.rotation);
+          translate(0, Magpie.CARGO_Y);
+          Junk.drawJunk();
+          pop();
+        }
         Magpie.drawMagpie({ rotation: this.physics.rotation, beam: this.beam });
         if (game.debug) {
           this.physics.draw();
@@ -42,22 +46,16 @@ class Magpie {
 
   /** Sets the captured junk to the given one, and turns off the beam. */
   captureJunk(junk) {
-    // TODO (Phase 4): Remember the junk in this.capturedJunk, and switch the
-    // beam off.
+
+    this.capturedJunk = junk;
+    this.beam = false
   }
 
   // this method is static. That means it doesn't use `this` to gain access to
   // instance members, because there _is_ no instance. This is essentially a
   // function that happens to be placed inside the Magpie namespace.
   static drawMagpie({ rotation, beam }) {
-    // TODO (Phase 1): Replace the placeholder with the Magpie: a rounded
-    // rectangle dome, a platform across the bottom of the dome, and a window
-    // on the right side. Draw it around (0, 0), rotated by `rotation`, using
-    // the size constants at the top of this class.
-    //
-    // TODO (Phase 3): When `beam` is true, draw the tractor beam first, so
-    // the ship is on top: a see-through triangle with its point at (0, 0),
-    // Magpie.BEAM_HEIGHT long and Magpie.BEAM_WIDTH wide at the far end.
+
     push();
     rotate(rotation);
 

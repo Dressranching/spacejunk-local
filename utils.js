@@ -37,5 +37,22 @@ function drawPlaceholder({ rotation, w, h }) {
 function timeToStringParts(timeMs) {
   // TODO (Phase 5): Round up to whole seconds, then split them into minutes
   // and leftover seconds. Seconds always have two digits.
-  return { minutes: "0", seconds: "00" };
+  const secondsLeft = Math.ceil(timeMs / 1000);
+  const minutes = String(Math.trunc(secondsLeft / 60));
+  const seconds = String(secondsLeft % 60).padStart(2, "0");
+  return { minutes, seconds};
+}
+
+function worldToScreen(x, y) {
+  const m = drawingContext.getTransform();
+  const p = new DOMPoint(x, y).matrixTransform(m);
+
+  return {x: p.x, y: p.y};
+}
+
+function screenToWorld(x, y) {
+  const m = drawingContext.getTransform().inverse();
+  const p = new DOMPoint(x, y).matrixTransform(m);
+
+  return {x: p.x, y: p.y};
 }

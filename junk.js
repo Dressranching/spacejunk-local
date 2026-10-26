@@ -38,17 +38,14 @@ class Junk {
    * moved the transform to wherever the junk should appear.
    **/
   static drawJunk() {
-    // TODO (Phase 1): Replace the placeholder with a filled circle,
-    // Junk.DIAMETER across, centered on (0, 0).
 
     let w = Junk.DIAMETER;
-    let h = Junk.DIAMETER
 
     push();
     stroke(0);
     strokeWeight(2);
     fill('#a39364');
-    circle(w/2, h/2, w);
+    circle(0, 0, w);
     pop();
   }
 
